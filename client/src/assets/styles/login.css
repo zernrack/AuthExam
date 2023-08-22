@@ -1,12 +1,9 @@
-html {
-  background-color: #e1ad01;
-}
+
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .centerBox {
@@ -14,7 +11,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #e1ad01;
   border-radius: 2rem;
   padding: 2rem;
   margin-top: 6rem;
