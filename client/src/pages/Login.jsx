@@ -8,9 +8,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  //   console.log(username);
-  //   console.log(password);
-
   const handleLogin = (e) => {
     e.preventDefault();
     axios
