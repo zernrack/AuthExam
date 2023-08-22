@@ -37,6 +37,21 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// Handle GET requests to '/territory' endpoint
+app.get("/territory", (req, res) => {
+    const url = "https://netzwelt-devtest.azurewebsites.net/Territories/All";
+  
+    // Make a GET request to the external API to fetch territory data
+    axios
+      .get(url)
+      .then((response) => {
+        res.send("Response data: " + JSON.stringify(response.data)); // Respond with fetched data
+      })
+      .catch((error) => {
+        res.send("Error: " + error.message); // Respond with an error message
+      });
+  });
+
 // Start the server and listen on the defined port
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
