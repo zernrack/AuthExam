@@ -6,7 +6,7 @@ const isAuthenticated = () => {
 
 const login = async (username, password) => {
   try {
-    const response = await axios.post("http://localhost:8080/login", { username, password });
+    const response = await axios.post("https://authexamserver.onrender.com/login", { username, password });
     const token = response.data.token;
     localStorage.setItem("authToken", token);
     return true; // Login successful
