@@ -1,12 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { AppRoutes } from "./pages/AppRoutes";
+import { isAuthenticated } from "./pages/auth";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+// import { AppRoutes } from "./pages/AppRoutes";
+import Login from "./pages/Login";
+import Homepage from "./pages/Homepage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AppRoutes />
+      <Routes>
+        <Route path="/account/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            isAuthenticated() ? <Homepage /> : <Navigate to="/account/login" />
+          }
+        />
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
