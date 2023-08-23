@@ -1,0 +1,43 @@
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.centerBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e1ad01;
+  border-radius: 2rem;
+  padding: 2rem;
+  margin-top: 6rem;
+}
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+}
+
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+}
+
+span{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+  height: 25px;
+}
+
+button{
+    
+    font-size: x-large;
+}
