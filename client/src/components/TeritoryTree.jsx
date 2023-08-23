@@ -8,7 +8,7 @@ export default function TerritoryTree() {
   useEffect(() => {
     async function fetchTerritoryData() {
       try {
-        const response = await axios.get("http://localhost:8080/territory");
+        const response = await axios.get("https://authexamserver.onrender.com/territory");
         const territoryDataObject = response.data; // Assuming the response data is an object
         const territoryDataArray = Object.values(territoryDataObject);
         setTerritoryData(territoryDataArray);
