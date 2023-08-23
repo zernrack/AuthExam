@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { login } from "./auth";
 import "../assets/styles/login.css";
 export default function Login() {
   // Will store user input
@@ -8,17 +9,15 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:8080/login", { username, password })
-      .then((result) => {
-        console.log("Login success:", result.data);
-        navigate("/");
-      })
-      .catch((err) => {
-        console.error("Login error:", err);
-      });
+
+    const success = await login(username, password); // Use the login function
+    if (success) {
+      navigate("/");
+    } else {
+      console.error("Login failed");
+    }
   };
 
   return (
