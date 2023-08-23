@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function TerritoryTree({inputId}) {
+export default function TerritoryTree() {
   const [territoryData, setTerritoryData] = useState([]);
+  const [expandedNodes, setExpandedNodes] = useState([]);
 
   useEffect(() => {
     async function fetchTerritoryData() {
@@ -19,17 +20,48 @@ export default function TerritoryTree({inputId}) {
     fetchTerritoryData();
   }, []);
 
-  console.log("test", territoryData);
+  // console.log("Territories", territoryData);
+
+  // Handle clicking of list node
+  const handleNodeClick = (nodeId) => {
+    if (expandedNodes.includes(nodeId)) {
+      setExpandedNodes(expandedNodes.filter((id) => id !== nodeId));
+    } else {
+      setExpandedNodes([...expandedNodes, nodeId]);
+    }
+  };
+
+  // Check if list node is currently expanded
+  const isNodeExpanded = (nodeId) => expandedNodes.includes(nodeId);
+
+  // Render a territory node along with its nested children if expanded
+  const renderTerritory = (territory) => (
+    <li key={territory.id}>
+      <span
+        className={isNodeExpanded(territory.id) ? "caret caret-open" : "caret"}
+        onClick={() => handleNodeClick(territory.id)}
+      >
+        {territory.name}
+      </span>
+      {isNodeExpanded(territory.id) && (
+        <ul className="sub-tree">
+          {territoryData
+            .flat()
+            .filter((t) => t.parent === territory.id)
+            .map(renderTerritory)}
+        </ul>
+      )}
+    </li>
+  );
 
   return (
     <main>
-      {territoryData.map((territoriesArray, index) => (
-        <ul key={index}>
-          {territoriesArray.map((territory) => (
-            <li key={territory.id === inputId}>{territory.name}</li>
-          ))}
-        </ul>
-      ))}
+      <ul className="tree">
+        {territoryData
+          .flat()
+          .filter((t) => !t.parent)
+          .map(renderTerritory)}
+      </ul>
     </main>
   );
 }
