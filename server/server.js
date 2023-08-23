@@ -24,7 +24,7 @@ app.post("/login", async (req, res) => {
     );
 
     console.log("API response:", response.data);
-    res.json({ token: response.data.token }); // Respond with the token
+    res.json({ token: response.data.username }); // Respond with the token
   } catch (error) {
     console.error("Login error:", error.message);
     res.status(401).json({ error: "Authentication failed" });

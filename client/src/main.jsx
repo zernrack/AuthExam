@@ -9,9 +9,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/account/login" element={<Login />} />
         <Route
-          path="/"
+          path="/account/login"
+          element={
+            isAuthenticated() ? <Navigate to="/" /> : <Login />
+          }
+        />
+        <Route
+          path="/home/index"
           element={
             isAuthenticated() ? <Homepage /> : <Navigate to="/account/login" />
           }
