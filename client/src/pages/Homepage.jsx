@@ -8,7 +8,7 @@ export default function Homepage() {
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      navigate("/acount/login");
+      navigate("/account/login");
     }
   });
 
