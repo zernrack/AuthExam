@@ -11,10 +11,12 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const success = await login(username, password); // Use the login function
-    if (success) {
-      navigate("/");
-    } else {
+    try {
+      const success = await login(username, password); // Use the login function
+      if (success) {
+        navigate("/");
+      }
+    } catch {
       console.error("Login failed");
     }
   };
